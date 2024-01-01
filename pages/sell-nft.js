@@ -11,8 +11,14 @@ import { useEffect, useState } from "react"
 
 export default function Home() {
     const { chainId, account, isWeb3Enabled } = useMoralis()
-    const chainString = chainId ? parseInt(chainId).toString() : "31337"
-    const marketplaceAddress = networkMapping[chainString].NftMarketplace[0]
+    const chainString = chainId ? parseInt(chainId).toString() : null
+
+    // Check if chainId is available before proceeding
+    if (!isWeb3Enabled || !chainString || !networkMapping[chainString]) {
+        return <div>Web3 Currently Not Enabled</div>
+    }
+
+    const marketplaceAddress = networkMapping[chainString]?.NftMarketplace?.[0]
     const dispatch = useNotification()
     const [proceeds, setProceeds] = useState("0")
 
@@ -117,12 +123,14 @@ export default function Home() {
                     {
                         name: "Token ID",
                         type: "number",
+                        inputWidth: "50%",
                         value: "",
                         key: "tokenId",
                     },
                     {
                         name: "Price (in ETH)",
                         type: "number",
+                        inputWidth: "50%",
                         value: "",
                         key: "price",
                     },

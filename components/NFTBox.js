@@ -101,7 +101,7 @@ export default function NFTBox({ price, nftAddress, tokenId, marketplaceAddress,
     }
 
     return (
-        <div>
+        <div className="">
             <div>
                 {imageURI ? (
                     <div>
@@ -128,6 +128,7 @@ export default function NFTBox({ price, nftAddress, tokenId, marketplaceAddress,
                                         src={imageURI}
                                         height="200"
                                         width="200"
+                                        alt="an nft "
                                     />
                                     <div className="font-bold">
                                         {ethers.utils.formatUnits(price, "ether")} ETH

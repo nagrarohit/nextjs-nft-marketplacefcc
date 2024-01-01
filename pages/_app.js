@@ -4,10 +4,11 @@ import Header from "../components/Header"
 import Head from "next/head"
 import { NotificationProvider } from "web3uikit"
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client"
+import Footer from "@/components/Footer"
 
 const client = new ApolloClient({
     cache: new InMemoryCache(),
-    uri: "enter your graph deploy uri here",
+    uri: "https://api.studio.thegraph.com/query/46739/nft-marketplace/v0.0.2",
 })
 
 function MyApp({ Component, pageProps }) {
@@ -16,6 +17,7 @@ function MyApp({ Component, pageProps }) {
             <Head>
                 <title>NFT Marketplace</title>
                 <meta name="description" content="NFT Marketplace" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <MoralisProvider initializeOnMount={false}>
@@ -23,6 +25,7 @@ function MyApp({ Component, pageProps }) {
                     <NotificationProvider>
                         <Header />
                         <Component {...pageProps} />
+                        <Footer />
                     </NotificationProvider>
                 </ApolloProvider>
             </MoralisProvider>
